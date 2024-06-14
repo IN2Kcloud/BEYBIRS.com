@@ -136,14 +136,15 @@
   
   let mask;
   
-  const loaderFBX1 = new FBXLoader();
-            loaderFBX1.load('https://github.com/IN2Kcloud/BEYBIRS/blob/main/media/cmask.fbx', function (object) {
-                mask = object.children[0];
-                mask.position.set(0, -0.2, 0);
-                mask.scale.setScalar(2);
-                mask.material = mask_mat;
-                scene.add(mask);
-            });
+ const loaderFBX1 = new FBXLoader().setPath('https://miroleon.github.io/daily-assets/');
+  loaderFBX1.load('MASK_02.fbx', function (object) {
+  
+    mask = object.children[0];
+    mask.position.set(0, -0.2, 0);
+    mask.scale.setScalar(2);
+    mask.material = mask_mat;
+    scene.add(mask);
+  });
   
   // POST PROCESSING
   let composer;
