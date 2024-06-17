@@ -1,39 +1,43 @@
 <html lang="en" webcrx="">
-    <head>
+  <head>
 
-      <meta charset="UTF-8">
+    <meta charset="UTF-8">
      
-      <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
   
-      <meta name="apple-mobile-web-app-title" content="CodePen">
+    <meta name="apple-mobile-web-app-title" content="CodePen">
   
-      <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
   
-      <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
   
-      <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
   
-      <title>BEYBIRS productions</title>
+    <title>BEYBIRS productions</title>
   
-      <link rel="canonical" href="https://codepen.io/miroleon/pen/gOBYRpY">
- 
+    <link rel="canonical" href="https://codepen.io/miroleon/pen/gOBYRpY">
+
+    <link rel="stylesheet" href="style.css">
+    
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
   
-  html, body { margin:0; overflow: hidden; background-color: #11151c; }
+  html, body { background-color: #111; margin: 0px; overflow-x: hidden; padding: 0px; }
 
   a { color: rgba(255, 255, 255, 0.5); text-decoration: none; transition: all 0.5s ease-in-out; }
   
   a:hover{ filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.9)); }
+
+  .canvas-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; }
   
-  #canvas{ height: 100%; width: 100%; z-index: 0; }
+  #canvas{ height: 100%; width: 100%; /*z-index: 0;*/ }
   
-  .text-container{ display: flex; flex-direction: column; justify-content: space-between; align-items: center; top: 5%; height: 80%; width: 100%; position: fixed; left: 0; z-index: 1; }
+  .text-container{ display: flex; flex-direction: column; justify-content: space-between; align-items: center; top: 5%; height: 80%; width: 100%; position: fixed; left: 0; z-index: 3; }
   
   .title{ font-family: 'Open Sans', sans-serif; font-size: 1rem; text-align: center; text-transform: uppercase; letter-spacing: 0.5rem; font-weight: 500; color: rgba(255, 255, 255, 0.5); }
   
   /*.socials{}*/
-  .socials{ position: fixed; bottom: 5%; z-index: 1;}
+  .socials{ position: fixed; bottom: 5%;}
   
   .socials svg{ margin: 0 5px; transition: all 0.5s ease-in-out; transform: scale(1); }
   
@@ -67,153 +71,162 @@
       </div>
     </div>
   
-  <canvas id="canvas" width="1333" height="808" style="width: 1333px; height: 808px;"></canvas>
-    
-  <script id="rendered-js" type="module">
-  import * as THREE from 'https://cdn.skypack.dev/three@0.124.0';
-  import { RGBELoader } from 'https://cdn.skypack.dev/three@0.124.0/examples/jsm/loaders/RGBELoader.js';
-  import { EffectComposer } from 'https://cdn.skypack.dev/three@0.124.0/examples/jsm/postprocessing/EffectComposer.js';
-  import { RenderPass } from 'https://cdn.skypack.dev/three@0.124.0/examples/jsm/postprocessing/RenderPass.js';
-  import { AfterimagePass } from 'https://cdn.skypack.dev/three@0.124.0/examples/jsm/postprocessing/AfterimagePass.js';
-  import { UnrealBloomPass } from 'https://cdn.skypack.dev/three@0.124.0/examples/jsm/postprocessing/UnrealBloomPass.js';
-  import { ShaderPass } from 'https://cdn.skypack.dev/three@0.124.0/examples/jsm/postprocessing/ShaderPass.js';
-  import { PixelShader } from 'https://cdn.skypack.dev/three@0.124.0/examples/jsm/shaders/PixelShader.js';
-  import { FBXLoader } from 'https://cdn.skypack.dev/three@0.134.0/examples/jsm/loaders/FBXLoader.js';
-  
-  var renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
-  
-  // default bg canvas color //
-  renderer.setClearColor(0x11151c);
-  
-  //  use device aspect ratio //
-  renderer.setPixelRatio(window.devicePixelRatio);
-  
-  // set size of canvas within window //
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  
-  var scene = new THREE.Scene();
-  
-  const hdrEquirect = new RGBELoader().
-  setPath('https://miroleon.github.io/daily-assets/').
-  load('gradient_13.hdr', function () {
-  
-    hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
-  });
-  
-  scene.environment = hdrEquirect;
-  scene.fog = new THREE.Fog(0x11151c, 1, 100);
-  scene.fog = new THREE.FogExp2(0x11151c, 0.14);
-  
-  var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.z = 10;
-  camera.position.y = 0.2;
-  
-  const pointlight = new THREE.PointLight(0x85ccb8, 2, 20);
-  pointlight.position.set(0, 3, 2);
-  scene.add(pointlight);
-  
-  const pointlight2 = new THREE.PointLight(0x85ccb8, 2, 20);
-  pointlight2.position.set(0, 3, 2);
-  scene.add(pointlight2);
-  
-  // PointLightHelper
-  // const sphereSize = 1;
-  // const pointLightHelper = new THREE.PointLightHelper( pointlight, sphereSize );
-  // scene.add( pointLightHelper );
-  // const pointLightHelper2 = new THREE.PointLightHelper( pointlight2, sphereSize );
-  // scene.add( pointLightHelper2 );
-  
-  const textureLoader = new THREE.TextureLoader();
-  
-  var surf_imp = textureLoader.load('https://miroleon.github.io/daily-assets/surf_imp_02.jpg');
-  surf_imp.wrapT = THREE.RepeatWrapping;
-  surf_imp.wrapS = THREE.RepeatWrapping;
-  
-  var mask_mat = new THREE.MeshPhysicalMaterial({
-    color: 0xffffff,
-    roughness: 1,
-    metalness: 1,
-    roughnessMap: surf_imp });
-  
-  let mask;
-  
-  const loaderFBX1 = new FBXLoader();
-            loaderFBX1.load('https://raw.githubusercontent.com/IN2Kcloud/BEYBIRS.com/main/media/cmask.fbx', function (object) {
-                mask = object.children[0];
-                mask.position.set(0, -1, 0);
-                mask.scale.setScalar(2);
-                mask.material = mask_mat;
-                scene.add(mask);
-            });
-  
-  // POST PROCESSING
-  let composer;
-  const renderScene = new RenderPass(scene, camera);
-  
-  const afterimagePass = new AfterimagePass();
-  afterimagePass.uniforms['damp'].value = 0.95;
-  
-  const bloomparams = {
-    exposure: 1,
-    bloomStrength: 1,
-    bloomThreshold: 0.1,
-    bloomRadius: 1 };
-  
-  
-  const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
-  bloomPass.threshold = bloomparams.bloomThreshold;
-  bloomPass.strength = bloomparams.bloomStrength;
-  bloomPass.radius = bloomparams.bloomRadius;
-  
-  const pixelPass = new ShaderPass(PixelShader);
-  pixelPass.uniforms['resolution'].value = new THREE.Vector2(window.innerWidth, window.innerHeight);
-  pixelPass.uniforms['resolution'].value.multiplyScalar(window.devicePixelRatio);
-  pixelPass.uniforms['pixelSize'].value = 20;
-  
-  composer = new EffectComposer(renderer);
-  composer.addPass(renderScene);
-  composer.addPass(afterimagePass);
-  composer.addPass(bloomPass);
-  // composer.addPass( pixelPass );
-  
-  // RESIZE
-  window.addEventListener('resize', onWindowResize);
-  
-  var theta1 = 0;
-  
-  var update = function () {
-    theta1 += 0.007;
-  
-    camera.position.x = Math.sin(theta1) * 2;
-    camera.position.y = 2.5 * Math.cos(theta1) + 1;
-  
-    pointlight.position.x = Math.sin(theta1 + 1) * 11;
-    pointlight.position.z = Math.cos(theta1 + 1) * 11;
-    pointlight.position.y = 2 * Math.cos(theta1 - 3) + 3;
-  
-    pointlight2.position.x = -Math.sin(theta1 + 1) * 11;
-    pointlight2.position.z = -Math.cos(theta1 + 1) * 11;
-    pointlight2.position.y = 2 * -Math.cos(theta1 - 3) - 6;
-  
-    camera.lookAt(0, 0, 0);
-  };
-  
-  
-  function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  }
-  
-  
-  function animate() {
-    update();
-    composer.render();
-    requestAnimationFrame(animate);
-  }
-  
-  requestAnimationFrame(animate);
-  //# sourceURL=pen.js
+    <div class="headline-container">
+      <div id="text-behind">BEYBIRS<br>prods</div>
+      <div id="text-behind-blur">BEYBIRS<br>prods</div>
+      <div id="text-front">BEYBIRS<br>prods</div>
+    </div>
+
+    <div class="canvas-container">
+      <canvas id="canvas" width="1333" height="808" style="width: 1333px; height: 808px;"></canvas>
+    </div>
+
+    <script src="script.js"></script>
+    <script id="rendered-js" type="module">
+      import * as THREE from 'https://cdn.skypack.dev/three@0.124.0';
+      import { RGBELoader } from 'https://cdn.skypack.dev/three@0.124.0/examples/jsm/loaders/RGBELoader.js';
+      import { EffectComposer } from 'https://cdn.skypack.dev/three@0.124.0/examples/jsm/postprocessing/EffectComposer.js';
+      import { RenderPass } from 'https://cdn.skypack.dev/three@0.124.0/examples/jsm/postprocessing/RenderPass.js';
+      import { AfterimagePass } from 'https://cdn.skypack.dev/three@0.124.0/examples/jsm/postprocessing/AfterimagePass.js';
+      import { UnrealBloomPass } from 'https://cdn.skypack.dev/three@0.124.0/examples/jsm/postprocessing/UnrealBloomPass.js';
+      import { ShaderPass } from 'https://cdn.skypack.dev/three@0.124.0/examples/jsm/postprocessing/ShaderPass.js';
+      import { PixelShader } from 'https://cdn.skypack.dev/three@0.124.0/examples/jsm/shaders/PixelShader.js';
+      import { FBXLoader } from 'https://cdn.skypack.dev/three@0.134.0/examples/jsm/loaders/FBXLoader.js';
+      
+      var renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
+      
+      // default bg canvas color //
+      renderer.setClearColor(0x11151c);
+      
+      //  use device aspect ratio //
+      renderer.setPixelRatio(window.devicePixelRatio);
+      
+      // set size of canvas within window //
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      
+      var scene = new THREE.Scene();
+      
+      const hdrEquirect = new RGBELoader().
+      setPath('https://miroleon.github.io/daily-assets/').
+      load('gradient_5_comp.hdr', function () {
+      
+        hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
+      });
+      
+      scene.environment = hdrEquirect;
+      scene.fog = new THREE.Fog(0x11151c, 1, 100);
+      scene.fog = new THREE.FogExp2(0x11151c, 0.14);
+      
+      var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.z = 8;
+      camera.position.y = 0.2;
+      
+      const pointlight = new THREE.PointLight(0x85ccb8, 2, 20);
+      pointlight.position.set(0, 3, 2);
+      scene.add(pointlight);
+      
+      const pointlight2 = new THREE.PointLight(0x85ccb8, 2, 20);
+      pointlight2.position.set(0, 3, 2);
+      scene.add(pointlight2);
+      
+      // PointLightHelper
+      // const sphereSize = 1;
+      // const pointLightHelper = new THREE.PointLightHelper( pointlight, sphereSize );
+      // scene.add( pointLightHelper );
+      // const pointLightHelper2 = new THREE.PointLightHelper( pointlight2, sphereSize );
+      // scene.add( pointLightHelper2 );
+      
+      const textureLoader = new THREE.TextureLoader();
+      
+      var surf_imp = textureLoader.load('https://miroleon.github.io/daily-assets/surf_imp_02.jpg');
+      surf_imp.wrapT = THREE.RepeatWrapping;
+      surf_imp.wrapS = THREE.RepeatWrapping;
+      
+      var mask_mat = new THREE.MeshPhysicalMaterial({
+        color: 0xffffff,
+        roughness: 1,
+        metalness: 1,
+        roughnessMap: surf_imp });
+      
+      let mask;
+      
+      const loaderFBX1 = new FBXLoader();
+                loaderFBX1.load('https://raw.githubusercontent.com/IN2Kcloud/BEYBIRS.com/main/media/WW_Skull.fbx', function (object) {
+                    mask = object.children[0];
+                    mask.position.set(0, 0, 0);
+                    mask.scale.setScalar(2);
+                    mask.material = mask_mat;
+                    scene.add(mask);
+                });
+      
+      // POST PROCESSING
+      let composer;
+      const renderScene = new RenderPass(scene, camera);
+      
+      const afterimagePass = new AfterimagePass();
+      afterimagePass.uniforms['damp'].value = 0.95;
+      
+      const bloomparams = {
+        exposure: 1,
+        bloomStrength: 1,
+        bloomThreshold: 0.1,
+        bloomRadius: 1 };
+      
+      
+      const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+      bloomPass.threshold = bloomparams.bloomThreshold;
+      bloomPass.strength = bloomparams.bloomStrength;
+      bloomPass.radius = bloomparams.bloomRadius;
+      
+      const pixelPass = new ShaderPass(PixelShader);
+      pixelPass.uniforms['resolution'].value = new THREE.Vector2(window.innerWidth, window.innerHeight);
+      pixelPass.uniforms['resolution'].value.multiplyScalar(window.devicePixelRatio);
+      pixelPass.uniforms['pixelSize'].value = 20;
+      
+      composer = new EffectComposer(renderer);
+      composer.addPass(renderScene);
+      composer.addPass(afterimagePass);
+      composer.addPass(bloomPass);
+      // composer.addPass( pixelPass );
+      
+      // RESIZE
+      window.addEventListener('resize', onWindowResize);
+      
+      var theta1 = 0;
+      
+      var update = function () {
+        theta1 += 0.007;
+      
+        camera.position.x = Math.sin(theta1) * 2;
+        camera.position.y = 2.5 * Math.cos(theta1) + 1;
+      
+        pointlight.position.x = Math.sin(theta1 + 1) * 11;
+        pointlight.position.z = Math.cos(theta1 + 1) * 11;
+        pointlight.position.y = 2 * Math.cos(theta1 - 3) + 3;
+      
+        pointlight2.position.x = -Math.sin(theta1 + 1) * 11;
+        pointlight2.position.z = -Math.cos(theta1 + 1) * 11;
+        pointlight2.position.y = 2 * -Math.cos(theta1 - 3) - 6;
+      
+        camera.lookAt(0, 0, 0);
+      };
+      
+      
+      function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      }
+      
+      
+      function animate() {
+        update();
+        composer.render();
+        requestAnimationFrame(animate);
+      }
+      
+      requestAnimationFrame(animate);
+      //# sourceURL=pen.js
     </script>
   </body>
 </html>
