@@ -59,10 +59,10 @@
     <div class="text-container">
       <div class="title">ISLAME NOUAOUI
         <br>
-        <a href="https://instagram.com/miroxleon" target="_blank">@beybirs</a>
+        <a href="https://www.instagram.com/beybirs/" target="_blank">@beybirs</a>
       </div>
       <div class="socials">
-        <a href="https://instagram.com/miroxleon" target="_blank">
+        <a href="https://www.instagram.com/beybirs/" target="_blank">
           <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 24 24"><path fill="currentColor" d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z"></path></svg>
         </a>
   
@@ -86,6 +86,107 @@
       <canvas id="canvas" width="1333" height="808" style="width: 1333px; height: 808px;"></canvas>
     </div>
 
+    <div class="body">
+      <div id="cards">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-image">
+              <i class="fa-duotone fa-apartment"></i>
+            </div>
+            <div class="card-info-wrapper">
+              <div class="card-info">
+                <i class="fa-duotone fa-apartment"></i>
+                <div class="card-info-title">
+                  <h3>Apartments</h3>  
+                  <h4>Places to be apart. Wait, what?</h4>
+                </div>    
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <div class="card-image">
+              <i class="fa-duotone fa-unicorn"></i>
+            </div>
+            <div class="card-info-wrapper">
+              <div class="card-info">
+                <i class="fa-duotone fa-unicorn"></i>
+                <div class="card-info-title">
+                  <h3>Unicorns</h3>  
+                  <h4>A single corn. Er, I mean horn.</h4>
+                </div>    
+              </div>  
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <div class="card-image">
+              <i class="fa-duotone fa-blender-phone"></i>
+            </div>
+            <div class="card-info-wrapper">
+              <div class="card-info">
+                <i class="fa-duotone fa-blender-phone"></i>
+                <div class="card-info-title">
+                  <h3>Blender Phones</h3>  
+                  <h4>These absolutely deserve to exist.</h4>
+                </div>    
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <div class="card-image">
+              <i class="fa-duotone fa-person-to-portal"></i>
+            </div>
+            <div class="card-info-wrapper">
+              <div class="card-info">
+                <i class="fa-duotone fa-person-to-portal"></i>
+                <div class="card-info-title">
+                  <h3>Adios</h3>  
+                  <h4>See you...</h4>
+                </div>    
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <div class="card-image">
+              <i class="fa-duotone fa-person-from-portal"></i>
+            </div>
+            <div class="card-info-wrapper">
+              <div class="card-info">
+                <i class="fa-duotone fa-person-from-portal"></i>
+                <div class="card-info-title">
+                  <h3>I mean hello</h3>  
+                  <h4>...over here.</h4>
+                </div>    
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <div class="card-image">
+              <i class="fa-duotone fa-otter"></i>
+            </div>
+            <div class="card-info-wrapper">
+              <div class="card-info">
+                <i class="fa-duotone fa-otter"></i>
+                <div class="card-info-title">
+                  <h3>Otters</h3>  
+                  <h4>Look at me, imma cute lil fella.</h4>
+                </div>    
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="script.js"></script>
     <script id="rendered-js" type="module">
       import * as THREE from 'https://cdn.skypack.dev/three@0.124.0';
@@ -101,7 +202,7 @@
       var renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
       
       // default bg canvas color //
-      renderer.setClearColor(0x11151c);
+      renderer.setClearColor(0x111111);
       
       //  use device aspect ratio //
       renderer.setPixelRatio(window.devicePixelRatio);
@@ -119,8 +220,8 @@
       });
       
       scene.environment = hdrEquirect;
-      scene.fog = new THREE.Fog(0x11151c, 1, 100);
-      scene.fog = new THREE.FogExp2(0x11151c, 0.14);
+      scene.fog = new THREE.Fog(0x111111, 1, 100);
+      scene.fog = new THREE.FogExp2(0x111111, 0.14);
       
       var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
       camera.position.z = 8;
