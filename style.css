@@ -181,10 +181,13 @@ i {
 .card-image {
   align-items: center;
   display: flex;
-  height: 140px;
+  height: 100%;
   justify-content: center;
   overflow: hidden;
+  pointer-events: none;
 }
+
+.card-image img {width: 80%;height: 80%;object-fit: cover;}
 
 .card-image > i {
   font-size: 6em;
