@@ -159,7 +159,7 @@
 }
 
 .card > .card-content {
-  background-color: var(--card-color);
+  background-color: #0f0f0f;
   border-radius: inherit;
   display: flex;
   flex-direction: column;
@@ -179,10 +179,6 @@ h1, h2, h3, h4, span {
   margin: 0px;
 }
 
-i {  
-  color: rgb(240, 240, 240);
-}
-
 .card-image {
   align-items: center;
   display: flex;
@@ -193,6 +189,40 @@ i {
 }
 
 .card-image img {width: 80%;height: 80%;object-fit: cover; pointer-events: none;}
+ 
+/*CARDS II*/
+
+.card-image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.card-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: circle(0 at var(--mouse-x) var(--mouse-y));
+  transition: clip-path 0s;
+  display:none;
+}
+
+.card:hover .card-image img {
+  clip-path: circle(100px at var(--mouse-x) var(--mouse-y));
+  display: block;
+}
 
 
 /* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */
