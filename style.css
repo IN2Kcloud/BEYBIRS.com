@@ -182,7 +182,7 @@ h1, h2, h3, h4, span { color: #f1f1f1; font-family: "Teko", sans-serif; font-wei
 ul { list-style-type: none; }
 section{ height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #111; color: #f1f1f1; }
 nav{ width: 90vw; margin: 0 auto; }
-.nav-link{ display: flex; justify-content: space-between; align-items: center; text-align: center; font-size: 5vw; letter-spacing: 4px; font-weight: 700; color: transparent; -webkit-text-stroke: 3px #f1f1f1; transition: .3s ease; text-wrap:unset; }
+.nav-link{ display: flex; justify-content: center; align-items: center; text-align: center; font-size: 5vw; letter-spacing: 4px; font-weight: 700; color: transparent; -webkit-text-stroke: 3px #f1f1f1; transition: .3s ease; text-wrap:unset; }
 .nav-link:hover{ color: #f1f1f1; }
 .nav-link span{ display: flex; justify-content: space-around; align-items: center; text-align: center; gap: 3vw; font-size: 3vw; letter-spacing: 3px; font-weight: 500; color: transparent; -webkit-text-stroke: 2px #f1f1f1; transition: .1s ease; }
 .nav-link span:hover{ color: #f1f1f1; }
