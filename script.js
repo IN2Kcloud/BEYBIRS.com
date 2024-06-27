@@ -51,7 +51,7 @@ function linkHover(e){
         var tl = gsap.timeline();
         tl.to(imgWrap, {
             autoAlpha:0,
-            scale:0.3
+            scale:0.9
         })
     }
 }
