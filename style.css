@@ -6,26 +6,30 @@
 
   @font-face{font-family:'bat-night';src:url('BatKnight-Regular.ttf') format('truetype');font-display:swap;}
 
-  a { color: rgba(255, 255, 255, 0.5); text-decoration: none; transition: all 0.5s ease-in-out; }
+  a { color: rgb(255, 255, 255); text-decoration: none; transition: all 0.5s ease-in-out; }
   
-  a:hover{ filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.9)); }
+  a:hover{ filter: drop-shadow(0px 0px 10px rgb(255, 255, 255)); }
 
   .canvas-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; }
   
   #canvas{ height: 100%; width: 100%; /*z-index: 0;*/ }
   
-  .text-container{ display: flex; /*flex-direction: column;*/ justify-content: space-between; align-items: center; top: 5%; height: 8vh; width: 100%; position: fixed; padding: 2vw 5vw; background-color: #111; border-top: 3px solid #f1f1f1; border-bottom: 3px solid #f1f1f1; /*left: 0;*/ z-index: 3; }
+  .text-container{ display: flex; /*flex-direction: column;*/ justify-content: space-between; align-items: center; top: 5%; height: 6vh; width: 100%; position: fixed; padding: 2vw 5vw; background-color: #111; border-top: 3px solid #f1f1f1; border-bottom: 3px solid #f1f1f1; /*left: 0;*/ z-index: 3; }
   
-  .title{ font-family: 'Open Sans', sans-serif; font-size: 1rem; text-align: center; text-transform: uppercase; letter-spacing: 0.5rem; font-weight: 500; color: rgba(255, 255, 255, 0.5); }
+  .title{ font-family: 'Open Sans', sans-serif; font-size: 1rem; text-align: center; /*text-transform: uppercase;*/ letter-spacing: 0.5rem; font-weight: 500; color: rgb(255, 255, 255); }
+  .title span {position: relative; z-index: 1;} .title span::before {content: ''; position: absolute; z-index: -1; top: 0; bottom: 0; left: -0.25em; right: -0.25em; background-color: #f1f1f1; transform-origin: center right; transform: scaleX(0); transition: transform 0.2s ease-in-out;}.title span:hover::before { transform: scaleX(1); transform-origin: center left;}
+  .title span:hover .titleII{color:#111}
   
   /*.socials{}*/
 
   /*.socials{ position: fixed; top: 5%;}*/
   
-  .socials svg{ margin: 0 20px; transition: all 0.2s ease-in-out; transform: scale(1); }
+  .socials svg{ width: 33; height: 33; margin: 0 20px; transition: all 0.1s ease-in-out; transform: scale(1); }
   
   .socials svg:hover{ transform: scale(1.2); filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 1)); }
-  
+  .socials span {position: relative; z-index: 1;} .socials span::before {content: ''; position: absolute; z-index: -1; top: 0; bottom: 0; left: -0.25em; right: -0.25em; background-color: #f1f1f1; transform-origin: center right; transform: scaleX(0); transition: transform 0.2s ease-in-out;}.socials span:hover::before { transform: scaleX(1); transform-origin: center left;}
+  .socials span:hover .socialsII{color:#111}
+
   @media (orientation:portrait){
     .title{ font-size: 2rem; }
     .socials svg{ width: 66; height: 66; margin: 0 20px; }
@@ -78,7 +82,7 @@
 /* ADDITIONAL */
 
 .section-1 {height:6vh; width: 100vw; background-color: #111; border-top: 2px solid #E2DFE9; border-bottom: 2px solid #E2DFE9; position:relative; display:flex;align-items: center; top: 100vh; z-index: 2; overflow:hidden;} 
-.team-copy{height: 50vh; margin-top:25vh;margin-bottom:25vh;margin-right: 0px;margin-left: 0px; overflow: hidden;} .team-copy0{display:flex; white-space:nowrap; overflow:hidden;} .team-copy0-wrap{font-size:3rem;letter-spacing:2px;line-height:15vh;padding-right:0.3em;margin:-0.3rem 0;} .team-copy0-wrap span {display:flex; align-items: center; gap: 2px; text-align: center;} .fa-sun, .fa-solid{font-size:1.5rem; position: relative; right:1%;}
+.team-copy{height: 50vh; margin-top:25vh;margin-bottom:25vh;margin-right: 0px;margin-left: 0px; overflow: hidden;} .team-copy0{display:flex; white-space:nowrap; overflow:hidden;} .team-copy0-wrap{font-size:2rem;letter-spacing:2px;line-height:15vh;padding-right:0.3em;margin:-0.3rem 0;} .team-copy0-wrap span {display:flex; align-items: center; gap: 2px; text-align: center;} .fa-sun, .fa-solid{font-size:1.5rem; position: relative; right:1%;}
 .team-copy0-wrap{animation:subLoop0 30s linear infinite;}
 @keyframes subLoop0{from{transform: translateX(0);}to{transform: translateX(-100%);}}
 
@@ -227,7 +231,7 @@ h1, h2, h3, h4, span {
 }
 
 .card:hover .card-image img {
-  clip-path: circle(100px at var(--mouse-x) var(--mouse-y));
+  clip-path: circle(5vh at var(--mouse-x) var(--mouse-y));
   display: block;
 }
 
