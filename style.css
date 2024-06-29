@@ -186,9 +186,10 @@ nav{ width: 90vw; margin: 0 auto; }
 .nav-link:hover{ color: #f1f1f1; }
 .nav-link span{ display: flex; justify-content: space-around; align-items: center; text-align: center; gap: 3vw; font-size: 3vw; letter-spacing: 3px; font-weight: 500; color: transparent; -webkit-text-stroke: 2px #f1f1f1; transition: .1s ease; }
 .nav-link span:hover{ color: #f1f1f1; }
-.img-wrapper{ position: absolute; left:-120px; top: -120px; width: 10vw; height:10vw; overflow: hidden; pointer-events: none; z-index: 10; /*border-radius: 50%;*/ mix-blend-mode: multiply; visibility: hidden; transform: scale(0.3); }
+.img-wrapper{ position: absolute; left: 0; top: 0; width: 10vw; height: 10vw; border: 2px solid #f1f1f1; border-radius: 50%; overflow: hidden; pointer-events: none; z-index: 10; mix-blend-mode: hard-light; visibility: hidden; transform: scale(0.3); }
 .img-placeholder, .img-placeholder img{ height: 100%; width: 100%; }
 .img-placeholder img{ object-fit: cover; display: block; }
+
 
 
 /* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */
